@@ -8,13 +8,14 @@
 class Routeur
 {
     private $url;
-    private $routes = [
-                            "home" => ["controller" => 'Home', "method" => 'showHome']
-    ];
-
+    private $routes;
 
     public function __construct($url)
     {
+
+        $routes = parse_ini_file('routes/routes.ini', true);
+        $this->routes = $routes;
+
         $this->url = $url;
 
         $route  = $this->getRoute();
@@ -26,6 +27,7 @@ class Routeur
 
         $this->request = $request;
     }
+
 
     public function getRoute()
     {

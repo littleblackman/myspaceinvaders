@@ -8,14 +8,14 @@
     <title>MY SPACE INVADERS</title>
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
-    <link rel="stylesheet" href="<?= ASSETS;?>style.css"/>
+    <link rel="stylesheet" href="<?= CSS;?>style.css"/>
 </head>
 <body>
 <header>
     <nav>
         <div class="nav-item end-row">
             <button>
-                <a href="<?php echo HOST;?>start-game.html">
+                <a href="<?php echo HOST;?>start-game">
                     Start
                 </a>
             </button>
@@ -24,8 +24,11 @@
 </header>
 
 <!--- ma page ---->
+<div id="mainContent">
+    <?php echo $contentPage ;?>
+</div>
 
-<?php echo $contentPage ;?>
+
 
 </body>
 </html>

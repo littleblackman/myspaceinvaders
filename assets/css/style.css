@@ -1,0 +1,14 @@
+/* ----------------------------- */
+/*  my space invaders project
+/* ----------------------------- */
+
+/* common parts of document */
+
+body {  background-color: #FAFAFA; width: 1400px; margin:  0 auto; padding: 0; }
+a, a:hover {  color: #000; text-decoration: none;}
+h1 { font-size: 2em; font-weight: normal;color: gray}
+#mainContent { border: 1px solid black}
+
+canvas { border: 1px solid black; width: 1200px; height: 800px; margin: 0 auto }
+
+

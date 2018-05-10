@@ -36,6 +36,10 @@ class MyConfiguration
         define('MODEL', ROOT.'model/');
         define('APPLICATION', ROOT.'application/');
         define('ASSETS', HOST.'assets/');
+        define('JS', ASSETS.'js/');
+        define('CSS', ASSETS.'css/');
+        define('IMG', ASSETS.'image/');
+
 
         // set bdd
         define('DB_LOGIN', $parameters['db_login']);
