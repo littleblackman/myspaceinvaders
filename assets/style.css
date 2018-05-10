@@ -1,0 +1,9 @@
+/* ----------------------------- */
+/*  my space invaders project
+/* ----------------------------- */
+
+/* common parts of document */
+
+body { padding: 0; margin: 0; background-color: #FAFAFA}
+a, a:hover {  color: #000; text-decoration: none;}
+h1 { font-family: 'Pacifico', cursive; display: inline; font-size: 2em; font-weight: normal; padding-left: 30px; color: gray}
