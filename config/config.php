@@ -7,13 +7,16 @@ class MyConfiguration
      */
     public static function start()
     {
+        // errors
+        ini_set('display_errors','on');
+        error_reporting(E_ALL);
+
         // start session
         session_start();
 
         // start autoload
         spl_autoload_register(array(__CLASS__, 'autoload'));
         MyConfiguration::initParameters();
-
     }
 
     /**
@@ -35,11 +38,12 @@ class MyConfiguration
         define('VIEW', ROOT.'view/');
         define('MODEL', ROOT.'model/');
         define('APPLICATION', ROOT.'application/');
+
+        // set assets url
         define('ASSETS', HOST.'assets/');
         define('JS', ASSETS.'js/');
         define('CSS', ASSETS.'css/');
         define('IMG', ASSETS.'image/');
-
 
         // set bdd
         define('DB_LOGIN', $parameters['db_login']);

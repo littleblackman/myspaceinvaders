@@ -12,7 +12,6 @@ class Routeur
 
     public function __construct($url)
     {
-
         $routes = parse_ini_file('routes/routes.ini', true);
         $this->routes = $routes;
 
@@ -58,7 +57,6 @@ class Routeur
                 $params[$key] = $val;
             }
         }
-
         return $params;
 
     }

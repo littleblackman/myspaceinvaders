@@ -15,4 +15,10 @@ class Home extends Controller
     }
 
 
+    public function login($request)
+    {
+        $this->render('login');
+    }
+
+
 }
