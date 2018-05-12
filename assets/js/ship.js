@@ -26,25 +26,42 @@ class Ship {
         this.step = this.width;
 
         // shout missile position
-        this.xShout = this.xShipCenter;
-        this.yShout = this.yShipCenter;
         this.shoutWidth = 2;
         this.shoutHeight= 20;
+        this.shoutColor = "#ff0000";
 
-        this.shoutActive = false;
+        // salve shouts
+        this.salve = [];
+
+        // limit of shout
+        this.limitShout = 3;
 
     }
 
+    /**
+     * x coord center ot a ship
+     *
+     * @returns {*}
+     */
     get xShipCenter()
     {
         return this.xShip + this.width/2;
     }
 
+    /**
+     * y coord center of a ship
+     *
+     * @returns {*}
+     */
     get yShipCenter()
     {
         return this.yShip + this.height/2;
     }
 
+    /**
+     * draw the ship in ctx
+     * @param ctx
+     */
     draw(ctx) {
         let x = this.xShip;
         let y = this.yShip;
@@ -56,25 +73,52 @@ class Ship {
         });
     };
 
+    /**
+     * draw the shout in ctx
+     * @param ctx
+     */
     drawShout(ctx) {
-        if(this.shoutActive === true && this.yShout > 0) {
-            this.yShout  = this.yShout  - this.height;
-            ctx.fillStyle = "#ff0000";
-            ctx.fillRect(this.xShout, this.yShout,  this.shoutWidth,  this.shoutHeight);
-        } else {
-            this.shoutActive = false;
-            this.yShout = this.yShipCenter;
 
+        this.updateShout();
+
+        if(this.salve.length > 0) {
+            ctx.fillStyle = this.shoutColor;
+            for (var i = 0; i < this.salve.length; i++) {
+                let xShout = this.salve[i][0];
+                let yShout = this.salve[i][1];
+                ctx.fillRect(xShout, yShout,  this.shoutWidth,  this.shoutHeight);
+            }
+        }
+
+    }
+
+    /**
+     * update the salve shouts
+     * calculate the news coords
+     * delete the shout out of canvas
+     */
+    updateShout()
+    {
+        if(this.salve.length < 1) return null;
+
+        for (var i = 0; i < this.salve.length; i++) {
+            if (this.salve[i][1] > 0) {
+                this.salve[i][1] = this.salve[i][1] - this.height;
+            } else {
+                this.salve.splice(i, 1);
+            }
         }
     }
 
+
+    /**
+     * move the ship on left or right
+     * @param direction
+     */
     move(direction)
     {
 
-        console.log(this.xShip+' '+direction);
-
-
-        if(direction == "left") {
+        if(direction === "left") {
             var move = this.step * -1;
         } else {
             var move = this.step;
@@ -95,12 +139,16 @@ class Ship {
         this.xShip = newXShip;
     }
 
-    shout()
+    /**
+     * add a shout in the salve array
+     */
+    addShout()
     {
-        if(this.shoutActive === false) {
-            this.shoutActive = true;
-            this.xShout = this.xShipCenter;
+        if(this.salve.length < this.limitShout)
+        {
+            this.salve.push([this.xShipCenter, this.yShipCenter]);
         }
+
     }
 
 

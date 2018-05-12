@@ -2,7 +2,7 @@
 <!--
 <script type="text/javascript" src="<?= JS;?>test.js"></script>
 -->
-<canvas id="myCanvas" width="800" height="600"></canvas>
+<canvas id="myCanvas" width="800" height="600" style="background-color: antiquewhite"></canvas>
 
 
 <script type="text/javascript" src="<?= JS;?>ship.js"></script>

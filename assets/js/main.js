@@ -44,7 +44,7 @@ window.onload = function () {
 
                 // Space
                 case 32:
-                    ship.shout();
+                    ship.addShout();
                     break;
                 default:
                     return;
