@@ -2,6 +2,8 @@
 
 window.onload = function () {
 
+    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+
     keyboardListener();
 
     // create canvas;
@@ -10,18 +12,26 @@ window.onload = function () {
     canvas.with   = 800;
     canvas.height = 600;
 
+    // create ship
     let ship = new Ship(canvas.with, canvas.height);
 
-    setInterval(animate, 125);
+    // load the game
+    requestAnimationFrame(animate);
 
+    /**
+     * create the view animation
+     */
     function animate()
     {
         // clear canvas
         ctx.clearRect(0, 0, canvas.with, canvas.height);
 
-        // draw ship
+        // draw elements
         ship.draw(ctx);
         ship.drawShout(ctx);
+
+        // game loop
+        requestAnimationFrame(animate);
     }
 
     /**

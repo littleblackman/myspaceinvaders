@@ -10,6 +10,9 @@ class Ship {
         this.width  = 40;
         this.height = 30;
 
+        this.img = new Image();
+        this.img.src = this.url;
+
         // canvas dimension
         this.canvasWith   = canvasWith;
         this.canvasHeight = canvasHeight;
@@ -18,7 +21,7 @@ class Ship {
         this.xShip = this.canvasWith/2 - this.width/2;
         this.yShip = this.canvasHeight - this.height;
 
-        // canvas border
+        // limit ship area
         this.limitLeft  = this.canvasWith/2 - (this.canvasWith/2 - this.width/2);
         this.limitRight = this.canvasWith/2 + (this.canvasWith/2 - this.width/2) - this.width;
 
@@ -66,11 +69,8 @@ class Ship {
         let x = this.xShip;
         let y = this.yShip;
 
-        let img = new Image();
-        img.src = this.url;
-        img.addEventListener('load', function() {
-            ctx.drawImage(img, x, y);
-        });
+        ctx.fillStyle = "#ffffff";
+        ctx.drawImage(this.img, x, y, 40, 30);
     };
 
     /**
