@@ -2,8 +2,6 @@
 
 window.onload = function () {
 
-    var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-
     keyboardListener();
 
     // create canvas;
@@ -20,7 +18,7 @@ window.onload = function () {
 
     addEnnemy();
 
-    setInterval(addEnnemy, 4000);
+    setInterval(addEnnemy, 2000);
 
     // load the game
     requestAnimationFrame(animate);
@@ -35,14 +33,20 @@ window.onload = function () {
 
         // draw elements
         leader.draw(ctx);
-        leader.drawShout(ctx);
+        leader.drawShout(ctx, ennemies);
 
         // ennemy
         if(ennemies.length > 0)
         {
-
             for (var i = 0; i < ennemies.length; i++) {
-                if(ennemies[i].update() === true){
+                ennemies[i].update(ctx);
+
+                if(ennemies[i].shouted === true) {
+                    ennemies[i].drawDestroy(ctx);
+                }
+
+                if(ennemies[i].state === 'on')
+                {
                     ennemies[i].draw(ctx);
                 } else {
                     ennemies.splice(i,1);
@@ -51,16 +55,13 @@ window.onload = function () {
 
         }
 
-
-
-
         // game loop
         requestAnimationFrame(animate);
     }
 
     function addEnnemy()
     {
-        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-80x97.png", 80, 97, canvas.with, canvas.height);
+        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-80x97.png", 40, 40, canvas.with, canvas.height);
         ennemies.push(ennemy);
     }
 

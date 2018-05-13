@@ -19,6 +19,11 @@
                     Start
                 </a>
             </button>
+            <button>
+                <a href="<?php echo HOST;?>">
+                    Home
+                </a>
+            </button>
         </div>
     </nav>
 </header>

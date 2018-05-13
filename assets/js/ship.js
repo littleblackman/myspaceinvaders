@@ -34,6 +34,27 @@ class Ship {
         return this.xShip + this.width/2;
     }
 
+    get borderLeft()
+    {
+        return this.xShip;
+    }
+
+    get borderRight()
+    {
+        return this.xShip + this.width;
+    }
+
+    get borderTop()
+    {
+        return this.yShip;
+    }
+
+    get borderBottom()
+    {
+        return this.yShip + this.height;
+    }
+
+
     /**
      * y coord center of a ship
      *
@@ -51,8 +72,6 @@ class Ship {
     draw(ctx) {
         let x = this.xShip;
         let y = this.yShip;
-
-        ctx.fillStyle = "#ffffff";
         ctx.drawImage(this.img, x, y, 40, 30);
     };
 
