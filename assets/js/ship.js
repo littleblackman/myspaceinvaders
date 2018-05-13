@@ -72,8 +72,16 @@ class Ship {
     draw(ctx) {
         let x = this.xShip;
         let y = this.yShip;
-        ctx.drawImage(this.img, x, y, 40, 30);
+        ctx.drawImage(this.img, x, y);
     };
+
+    /**
+     * draw the explosion
+     * @param ctx
+     */
+    drawDestroy(ctx) {
+        ctx.drawImage(this.explosionImg, this.xShip-this.width/2, this.yShip-this.height/2);
+    }
 
 
 }

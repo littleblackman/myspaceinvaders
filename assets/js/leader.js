@@ -23,7 +23,17 @@ class Leader extends Ship{
         this.limitShout = 3;
 
         // step mouvement
-        this.xStep = this.width/2;
+        this.xStep = this.width/4;
+
+        // configuration
+        this.move      = "off";
+        this.direction = "right";
+        this.destroy   = false;
+
+        // explosion
+        this.explosionUrl     = "http://elearning/myspaceinvaders/assets/image/explosion-blue-90x85.png";
+        this.explosionImg     = new Image();
+        this.explosionImg.src = this.explosionUrl;
 
     }
 
@@ -32,9 +42,9 @@ class Leader extends Ship{
      * draw the shout in ctx
      * @param ctx
      */
-    drawShout(ctx, ennemies) {
+    drawShout(ctx) {
 
-        this.updateShout(ennemies);
+        this.updateShout();
 
         if(this.salve.length > 0) {
             ctx.fillStyle = this.shoutColor;
@@ -52,7 +62,7 @@ class Leader extends Ship{
      * calculate the news coords
      * delete the shout out of canvas
      */
-    updateShout(ennemies)
+    updateShout()
     {
         // if no shout
         if(this.salve.length < 1) return null;
@@ -70,6 +80,8 @@ class Leader extends Ship{
             // update shout position
             this.salve[i][1] = this.salve[i][1] - this.height;
 
+
+            /*
             // if there's no ennemy on screen
             if(ennemies.length < 1) {
                 continue;
@@ -85,7 +97,7 @@ class Leader extends Ship{
                     this.salve.splice(i, 1);
                     break;
                 }
-            }
+            }*/
 
         }
     }
@@ -113,10 +125,11 @@ class Leader extends Ship{
      * move the ship on left or right
      * @param direction
      */
-    move(direction)
+    goMove()
     {
+        if(this.move === "off") return null;
 
-        if(direction === "left") {
+        if(this.direction === "left") {
             var move = this.xStep * -1;
         } else {
             var move = this.xStep;

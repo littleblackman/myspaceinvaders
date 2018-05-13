@@ -4,8 +4,8 @@ window.onload = function () {
 
     keyboardListener();
 
-    // create canvas;
-    const canvas  = document.getElementById("myCanvas");
+    // create canvas game;
+    const canvas  = document.getElementById("myCanvasGame");
     const ctx     = canvas.getContext('2d');
     canvas.with   = 800;
     canvas.height = 600;
@@ -13,15 +13,23 @@ window.onload = function () {
     // create leader
     let leader = new Leader("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
 
+    // game
+    let game = new Game(leader.img);
+
     // ennemies
     var ennemies = [];
 
-    addEnnemy();
-
-    setInterval(addEnnemy, 2000);
+    initGame();
 
     // load the game
-    requestAnimationFrame(animate);
+
+
+    function initGame()
+    {
+        addEnnemy();
+        setInterval(addEnnemy, 2000);
+        animate();
+    }
 
     /**
      * create the view animation
@@ -32,16 +40,25 @@ window.onload = function () {
         ctx.clearRect(0, 0, canvas.with, canvas.height);
 
         // draw elements
+        leader.goMove();
         leader.draw(ctx);
         leader.drawShout(ctx, ennemies);
 
-        // ennemy
+
+        // draw leader destroy
+        if(leader.destroy === true && game.status === "on") {
+            leader.drawDestroy(ctx);
+            leader.destroy = false;
+        }
+
+        // ennemies
         if(ennemies.length > 0)
         {
             for (var i = 0; i < ennemies.length; i++) {
-                ennemies[i].update(ctx);
+                ennemies[i].update(leader);
 
                 if(ennemies[i].shouted === true) {
+                    game.score ++;
                     ennemies[i].drawDestroy(ctx);
                 }
 
@@ -54,6 +71,8 @@ window.onload = function () {
             }
 
         }
+        // information show
+        game.draw(ctx);
 
         // game loop
         requestAnimationFrame(animate);
@@ -61,7 +80,7 @@ window.onload = function () {
 
     function addEnnemy()
     {
-        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-80x97.png", 40, 40, canvas.with, canvas.height);
+        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-40x40.png", 40, 40, canvas.with, canvas.height);
         ennemies.push(ennemy);
     }
 
@@ -75,15 +94,34 @@ window.onload = function () {
             switch (key) {
                 // ArrowLeft
                 case 37:
-                    leader.move('left');
+                    leader.move      = "on";
+                    leader.direction = "left";
                     break;
                 // ArrowRight
                 case 39:
-                    leader.move('right');
+                    leader.move      = "on";
+                    leader.direction = "right";
                     break;
                 // Space
                 case 32:
                     leader.addShout();
+                    break;
+                default:
+                    return;
+            }
+        });
+
+        document.addEventListener('keyup', (event) => {
+            let key = event.keyCode;
+
+            switch (key) {
+                // ArrowLeft
+                case 37:
+                    leader.move = "off";
+                    break;
+                // ArrowRight
+                case 39:
+                    leader.move = "off";
                     break;
                 default:
                     return;

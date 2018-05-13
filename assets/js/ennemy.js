@@ -40,26 +40,31 @@ class Ennemy extends Ship{
      */
     update() {
 
+        // if not destroyed
         if (this.shouted === false) {
             this.yShip = this.yShip + this.yStep;
 
+            // if out of screen set to off
             if (this.yShip > this.canvasHeight) {
                 this.state = 'off';
             } else {
                 this.state = 'on';
             }
+
         } else {
-            this.state = 'off';
+            this.state = 'off'; // if destroyed
         }
     }
 
-    drawDestroy(ctx) {
-        console.log('destroy');
-        ctx.drawImage(this.explosionImg, this.xShip-this.width/2, this.yShip-this.height/2);
-
-    }
-    
-
+    /*
+    checkLeaderCollision(leader) {
+        if(
+            leader.xShipCenter > this.borderLeft && leader.xShipCenter < this.borderRight
+            && leader.yShipCenter > this.borderTop  && leader.yShipCenter < this.borderBottom
+        ) {
+            leader.destroy = true;
+        }
+    }*/
 
 }
 
