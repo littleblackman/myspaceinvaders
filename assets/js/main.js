@@ -12,8 +12,8 @@ window.onload = function () {
     canvas.with   = 800;
     canvas.height = 600;
 
-    // create ship
-    let ship = new Ship(canvas.with, canvas.height);
+    // create leader
+    let ship = new Ship("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
 
     // load the game
     requestAnimationFrame(animate);

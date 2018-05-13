@@ -3,15 +3,16 @@
  */
 class Ship {
 
-    constructor(canvasWith, canvasHeight) {
+    constructor(url, widthImg, imgHeight, canvasWith, canvasHeight) {
 
-        // image ship property
-        this.url    = "http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png";
-        this.width  = 40;
-        this.height = 30;
-
+        // construct img;
+        this.url = url;
         this.img = new Image();
         this.img.src = this.url;
+
+        // img property
+        this.width  = widthImg;
+        this.height = imgHeight;
 
         // canvas dimension
         this.canvasWith   = canvasWith;
