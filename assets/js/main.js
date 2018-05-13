@@ -15,6 +15,13 @@ window.onload = function () {
     // create leader
     let leader = new Leader("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
 
+    // ennemies
+    var ennemies = [];
+
+    addEnnemy();
+
+    setInterval(addEnnemy, 4000);
+
     // load the game
     requestAnimationFrame(animate);
 
@@ -30,8 +37,31 @@ window.onload = function () {
         leader.draw(ctx);
         leader.drawShout(ctx);
 
+        // ennemy
+        if(ennemies.length > 0)
+        {
+
+            for (var i = 0; i < ennemies.length; i++) {
+                if(ennemies[i].update() === true){
+                    ennemies[i].draw(ctx);
+                } else {
+                    ennemies.splice(i,1);
+                }
+            }
+
+        }
+
+
+
+
         // game loop
         requestAnimationFrame(animate);
+    }
+
+    function addEnnemy()
+    {
+        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-80x97.png", 80, 97, canvas.with, canvas.height);
+        ennemies.push(ennemy);
     }
 
     /**
@@ -46,12 +76,10 @@ window.onload = function () {
                 case 37:
                     leader.move('left');
                     break;
-
                 // ArrowRight
                 case 39:
                     leader.move('right');
                     break;
-
                 // Space
                 case 32:
                     leader.addShout();
