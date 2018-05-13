@@ -13,7 +13,7 @@ window.onload = function () {
     canvas.height = 600;
 
     // create leader
-    let ship = new Ship("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
+    let leader = new Leader("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
 
     // load the game
     requestAnimationFrame(animate);
@@ -27,8 +27,8 @@ window.onload = function () {
         ctx.clearRect(0, 0, canvas.with, canvas.height);
 
         // draw elements
-        ship.draw(ctx);
-        ship.drawShout(ctx);
+        leader.draw(ctx);
+        leader.drawShout(ctx);
 
         // game loop
         requestAnimationFrame(animate);
@@ -44,17 +44,17 @@ window.onload = function () {
             switch (key) {
                 // ArrowLeft
                 case 37:
-                    ship.move('left');
+                    leader.move('left');
                     break;
 
                 // ArrowRight
                 case 39:
-                    ship.move('right');
+                    leader.move('right');
                     break;
 
                 // Space
                 case 32:
-                    ship.addShout();
+                    leader.addShout();
                     break;
                 default:
                     return;
