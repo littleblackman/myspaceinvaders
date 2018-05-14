@@ -20,7 +20,7 @@
                 </a>
             </button>
             <button>
-                <a href="<?php echo HOST;?>">
+                <a href="<?php echo HOST;?>home">
                     Home
                 </a>
             </button>

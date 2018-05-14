@@ -1,7 +1,8 @@
 /*** game management **/
 
-window.onload = function () {
 
+window.onload = function () {
+    
     keyboardListener();
 
     // create canvas game;

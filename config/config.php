@@ -26,12 +26,12 @@ class MyConfiguration
     {
         $root = $_SERVER['DOCUMENT_ROOT'];
         $host = $_SERVER['HTTP_HOST'];
-
+        
         $parameters = parse_ini_file('config.ini');
 
         // set parameters
         define('HOST', 'http://'.$host.'/'.$parameters['folder_app'].'/');
-        define('ROOT', $root.$parameters['folder_app'].'/');
+        define('ROOT', $root.'/'.$parameters['folder_app'].'/');
 
         //set folders
         define('CONTROLLER', ROOT.'controller/');
