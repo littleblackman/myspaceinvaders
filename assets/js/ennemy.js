@@ -23,6 +23,8 @@ class Ennemy extends Ship{
         this.explosionImg     = new Image();
         this.explosionImg.src = this.explosionUrl;
 
+        this.point = 5;
+
     }
 
     /**
@@ -47,8 +49,6 @@ class Ennemy extends Ship{
             // if out of screen set to off
             if (this.yShip > this.canvasHeight) {
                 this.state = 'off';
-            } else {
-                this.state = 'on';
             }
 
         } else {
@@ -56,15 +56,8 @@ class Ennemy extends Ship{
         }
     }
 
-    /*
-    checkLeaderCollision(leader) {
-        if(
-            leader.xShipCenter > this.borderLeft && leader.xShipCenter < this.borderRight
-            && leader.yShipCenter > this.borderTop  && leader.yShipCenter < this.borderBottom
-        ) {
-            leader.destroy = true;
-        }
-    }*/
+
+
 
 }
 

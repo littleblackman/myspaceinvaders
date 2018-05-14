@@ -3,8 +3,8 @@
  */
 class Leader extends Ship{
 
-    constructor(url, widthImg, imgHeight, canvasWith, canvasHeight)
-    {
+    constructor(url, widthImg, imgHeight, canvasWith, canvasHeight) {
+
         super(url, widthImg, imgHeight, canvasWith, canvasHeight);
 
         // ship position
@@ -37,15 +37,12 @@ class Leader extends Ship{
 
     }
 
-
     /**
      * draw the shout in ctx
      * @param ctx
      */
     drawShout(ctx) {
-
         this.updateShout();
-
         if(this.salve.length > 0) {
             ctx.fillStyle = this.shoutColor;
             for (var i = 0; i < this.salve.length; i++) {
@@ -62,8 +59,7 @@ class Leader extends Ship{
      * calculate the news coords
      * delete the shout out of canvas
      */
-    updateShout()
-    {
+    updateShout() {
         // if no shout
         if(this.salve.length < 1) return null;
 
@@ -76,48 +72,9 @@ class Leader extends Ship{
                 this.salve.splice(i, 1);
                 continue;
             }
-
             // update shout position
             this.salve[i][1] = this.salve[i][1] - this.height;
-
-
-            /*
-            // if there's no ennemy on screen
-            if(ennemies.length < 1) {
-                continue;
-            }
-            
-            // check if an ennemy is shouted
-            for(var j = 0; j < ennemies.length ; j++)
-            {
-                this.checkShouted(ennemies[j], this.salve[i][0], this.salve[i][1]);
-
-                // if the ennemy is shouted delete the shout
-                if(ennemies[j].shouted === true) {
-                    this.salve.splice(i, 1);
-                    break;
-                }
-            }*/
-
         }
-    }
-
-    /**
-     * check if the ennemy is shouted
-     *
-     * @param ennemy
-     * @param xShout
-     * @param yShout
-     */
-    checkShouted(ennemy, xShout, yShout) {
-
-        if(
-               xShout > ennemy.borderLeft && xShout < ennemy.borderRight
-            && yShout > ennemy.borderTop-ennemy.height  && yShout < ennemy.borderBottom-ennemy.height
-        ) {
-            ennemy.shouted = true;
-        }
-
     }
 
 
@@ -125,8 +82,7 @@ class Leader extends Ship{
      * move the ship on left or right
      * @param direction
      */
-    goMove()
-    {
+    goMove() {
         if(this.move === "off") return null;
 
         if(this.direction === "left") {
@@ -153,13 +109,11 @@ class Leader extends Ship{
     /**
      * add a shout in the salve array
      */
-    addShout()
-    {
+    addShout() {
         if(this.salve.length < this.limitShout)
         {
             this.salve.push([this.xShipCenter, this.yShipCenter]);
         }
-
     }
 
 

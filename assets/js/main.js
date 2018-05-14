@@ -1,4 +1,4 @@
-/*** init game */
+/*** game management **/
 
 window.onload = function () {
 
@@ -19,13 +19,11 @@ window.onload = function () {
     // ennemies
     var ennemies = [];
 
+    // load game
     initGame();
 
-    // load the game
 
-
-    function initGame()
-    {
+    function initGame() {
         addEnnemy();
         setInterval(addEnnemy, 2000);
         animate();
@@ -34,52 +32,60 @@ window.onload = function () {
     /**
      * create the view animation
      */
-    function animate()
-    {
+    function animate() {
+
         // clear canvas
         ctx.clearRect(0, 0, canvas.with, canvas.height);
 
-        // draw elements
+        // check game status
+        game.updateStatus();
+
+        // update and draw leader
         leader.goMove();
         leader.draw(ctx);
-        leader.drawShout(ctx, ennemies);
+        leader.drawShout(ctx);
 
+        // update collisions
+        game.checkEnnemiesShouted(leader, ennemies);
+        game.checkCollisionLeader(leader, ennemies);
 
-        // draw leader destroy
-        if(leader.destroy === true && game.status === "on") {
-            leader.drawDestroy(ctx);
-            leader.destroy = false;
-        }
-
-        // ennemies
-        if(ennemies.length > 0)
-        {
+        // update and draw ennemies shout or not(or delete)
+        if(ennemies.length > 0) {
             for (var i = 0; i < ennemies.length; i++) {
-                ennemies[i].update(leader);
-
+                ennemies[i].update();
+                // draw ennemies destroy
                 if(ennemies[i].shouted === true) {
-                    game.score ++;
                     ennemies[i].drawDestroy(ctx);
                 }
-
-                if(ennemies[i].state === 'on')
-                {
+                // draw
+                if(ennemies[i].state === 'on') {
                     ennemies[i].draw(ctx);
                 } else {
                     ennemies.splice(i,1);
                 }
             }
-
         }
+
+        // draw leader destroy
+        if(leader.destroy === true) {
+            leader.drawDestroy(ctx);
+            leader.destroy = false;
+        }
+
         // information show
         game.draw(ctx);
 
         // game loop
-        requestAnimationFrame(animate);
+        var  idLoop = requestAnimationFrame(animate);
+        // stop the game
+        if(game.status === "over") {
+            cancelAnimationFrame(idLoop);
+            game.drawGameOver(ctx);
+        }
+
     }
 
-    function addEnnemy()
-    {
+    function addEnnemy() {
         let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-40x40.png", 40, 40, canvas.with, canvas.height);
         ennemies.push(ennemy);
     }
