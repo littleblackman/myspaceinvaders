@@ -14,16 +14,12 @@
 <header>
     <nav>
         <div class="nav-item end-row">
-            <button>
                 <a href="<?php echo HOST;?>start-game">
                     Start
                 </a>
-            </button>
-            <button>
                 <a href="<?php echo HOST;?>home">
                     Home
                 </a>
-            </button>
         </div>
     </nav>
 </header>

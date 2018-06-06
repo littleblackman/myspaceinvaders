@@ -1,28 +1,27 @@
 /*** game management **/
 
-
 window.onload = function () {
-    
+
     keyboardListener();
+
 
     // create canvas game;
     const canvas  = document.getElementById("myCanvasGame");
     const ctx     = canvas.getContext('2d');
-    canvas.with   = 800;
+    canvas.width  = 800;
     canvas.height = 600;
 
     // create leader
-    let leader = new Leader("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.with, canvas.height);
+    let leader = new Leader("http://elearning/myspaceinvaders/assets/image/star-wars-tie-fighter-drawing-40x30.png", 40, 30, canvas.width, canvas.height);
 
     // game
-    let game = new Game(leader.img);
+    var game = new Game(leader.img);
 
     // ennemies
     var ennemies = [];
 
     // load game
     initGame();
-
 
     function initGame() {
         addEnnemy();
@@ -36,7 +35,7 @@ window.onload = function () {
     function animate() {
 
         // clear canvas
-        ctx.clearRect(0, 0, canvas.with, canvas.height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         // check game status
         game.updateStatus();
@@ -77,17 +76,18 @@ window.onload = function () {
         game.draw(ctx);
 
         // game loop
-        var  idLoop = requestAnimationFrame(animate);
+       requestAnimationFrame(animate);
+
         // stop the game
         if(game.status === "over") {
-            cancelAnimationFrame(idLoop);
+            cancelAnimationFrame(animate);
             game.drawGameOver(ctx);
         }
-
+        
     }
 
     function addEnnemy() {
-        let ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-40x40.png", 40, 40, canvas.with, canvas.height);
+        var ennemy = new Ennemy("http://elearning/myspaceinvaders/assets/image/x-wing-40x40.png", 40, 40, canvas.width, canvas.height);
         ennemies.push(ennemy);
     }
 

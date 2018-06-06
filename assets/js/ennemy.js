@@ -1,7 +1,7 @@
 /**
  * create the ennemy object
  */
-class Ennemy extends Ship{
+class Ennemy extends Ship {
 
     constructor(url, widthImg, imgHeight, canvasWith, canvasHeight)
     {

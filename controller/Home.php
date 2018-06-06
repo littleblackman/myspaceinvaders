@@ -1,6 +1,5 @@
 <?php
 
-
 /**
  * Class Home
  *
@@ -15,10 +14,18 @@ class Home extends Controller
     }
 
 
-    public function login($request)
+    public function loginAction($request)
     {
         $this->render('login');
     }
+    
+    
+    public function newPage()
+    {
+        $this->render('newPage');
+    }
+    
+    
 
 
 }

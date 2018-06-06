@@ -85,8 +85,8 @@ class Game {
                 for (var j = 0; j < ennemies.length; j++) {
                     let ennemy = ennemies[j];
                     if(
-                        xShout > ennemy.borderLeft && xShout < ennemy.borderRight
-                        && yShout > ennemy.borderTop && yShout < ennemy.borderBottom
+                           xShout > ennemy.borderLeft && xShout < ennemy.borderRight
+                        && yShout > ennemy.borderTop  && yShout < ennemy.borderBottom
                     ) {
                         ennemy.shouted = true;
                         this.score += ennemy.point;

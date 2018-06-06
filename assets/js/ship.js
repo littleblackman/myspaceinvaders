@@ -34,6 +34,16 @@ class Ship {
         return this.xShip + this.width/2;
     }
 
+    /**
+     * y coord center of a ship
+     *
+     * @returns {*}
+     */
+    get yShipCenter()
+    {
+        return this.yShip + this.height/2;
+    }
+
     get borderLeft()
     {
         return this.xShip;
@@ -54,16 +64,6 @@ class Ship {
         return this.yShip + this.height;
     }
 
-
-    /**
-     * y coord center of a ship
-     *
-     * @returns {*}
-     */
-    get yShipCenter()
-    {
-        return this.yShip + this.height/2;
-    }
 
     /**
      * draw the ship in ctx

@@ -1,5 +1,4 @@
 <?php
-
 include_once('config/config.php');
 
 MyConfiguration::start();

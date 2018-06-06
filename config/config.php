@@ -16,6 +16,7 @@ class MyConfiguration
 
         // start autoload
         spl_autoload_register(array(__CLASS__, 'autoload'));
+
         MyConfiguration::initParameters();
     }
 
@@ -31,7 +32,7 @@ class MyConfiguration
 
         // set parameters
         define('HOST', 'http://'.$host.'/'.$parameters['folder_app'].'/');
-        define('ROOT', $root.'/'.$parameters['folder_app'].'/');
+        define('ROOT', $root.''.$parameters['folder_app'].'/');
 
         //set folders
         define('CONTROLLER', ROOT.'controller/');
@@ -67,6 +68,9 @@ class MyConfiguration
         } else if (file_exists(CONTROLLER.$class.'.php'))
         {
             include_once (CONTROLLER.$class.'.php');
+        } else if (file_exists(CONTROLLER.'admin/'.$class.'.php'))
+        {
+            include_once (CONTROLLER.'admin/'.$class.'.php');
         }
 
     }
